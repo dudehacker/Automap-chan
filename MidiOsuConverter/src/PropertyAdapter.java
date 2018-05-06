@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+
 /**
  * user preference settings
  * @author DH
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
 public final class PropertyAdapter {
 	
 	// Path
-	private static final String PATH = System.getProperty("user.dir");
+	public static final String PATH = getCurrentWorkingPath();
 	public static final String FULL_PATH = PATH + "\\config.properties";
 	// Boolean key
 	public static final String CUSTOM_HITSOUND = "CustomHS";
@@ -39,6 +40,16 @@ public final class PropertyAdapter {
 	private static final int DEFAULTS_OVERALL_DIFFICULTY = 10;
 	private static final int DEFAULTS_MAX_CHORD = 5;
 	
+	public static String getCurrentWorkingPath() {
+		String path = null;
+		try {
+			path =  new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getCanonicalPath().replace("\\bin", "");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		return path;
+	}
+	
 	public static void writeToProperty(String key, Object value){
 		Properties prop = new Properties();
 		OutputStream output = null;
@@ -60,7 +71,7 @@ public final class PropertyAdapter {
 		}
 	}
 	
-	public static String readFromProperty(String key){
+	public static String readFromProperty(String key) throws NullPointerException{
 		Properties prop = new Properties();
         InputStream input = null;
         try {
@@ -78,10 +89,12 @@ public final class PropertyAdapter {
             if ( s != null){
             	return s;
             }
-        } catch (IOException e) {
-            System.out.println("PropertyAdapter got error reading from config file for key = " + key);
+        } catch (Exception e) {
+        	JOptionPane.showMessageDialog(null,"PropertyAdapter got error reading from config file for key = " + key);
         }
-        return null;
+        JOptionPane.showMessageDialog(null,FULL_PATH);
+        throw new NullPointerException("");
+        
 	}
 	
 

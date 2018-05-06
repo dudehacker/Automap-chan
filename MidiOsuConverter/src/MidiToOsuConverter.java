@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
@@ -92,14 +93,7 @@ public class MidiToOsuConverter implements Runnable {
 				+ "_outputs\\";
 		mergeHS = mergeHitSound;
 		customHS = customHitSound;
-		//convert = "F:\\Midi_to_Osu\\convert.csv";
-//		Resource resource = new ClassPathResource("/application/context/references/user/user.xml");
-//		File file = resource.getFile();
-		
-		ClassLoader loader = MidiToOsuConverter.class.getClassLoader();
-		File file = new File(loader.getResource("/Main.class").getPath());
-		file = file.getParentFile().getParentFile().getParentFile();
-		convert = file.getAbsoluteFile().getAbsolutePath() + "\\convert.csv";
+		convert = PropertyAdapter.PATH + "\\convert.csv";
 	}
 
 	private void readFromProperty() {
@@ -131,7 +125,7 @@ public class MidiToOsuConverter implements Runnable {
 			if (customTiming){
 				long[] timings = {0L};
 				int[] bpms = {125};
-				String file = System.getProperty("user.dir")  + "\\customBPM.mid";
+				String file = PropertyAdapter.PATH  + "\\customBPM.mid";
 				sequencer = MidiUtils.emptyTempos(sequencer);
 				MidiUtils.setTempos(sequencer, timings, bpms);
 				//MidiUtils.keepOnlyTrack(sequencer, 4);
@@ -360,8 +354,8 @@ public class MidiToOsuConverter implements Runnable {
 		}
 		if (tempoArray.size() == 0) {
 			tempoArray.add(500000L);
-			tickTimeline.add(new Long(0));
-			absTimeline.add(new Long(0));
+			tickTimeline.add(0l);
+			absTimeline.add(0l);
 		}
 
 		//System.out.println(tempoArray);
@@ -604,13 +598,13 @@ public class MidiToOsuConverter implements Runnable {
 
 	
 	private void copyCustomHS(NoteArray notes){
-		File pianoFolder = new File(System.getProperty("user.dir") + "\\Grand Piano\\");
+		File pianoFolder = new File(PropertyAdapter.PATH + "\\Grand Piano\\");
 		if (pianoFolder.exists() && pianoFolder.isDirectory()){
 			progressWindow.display("Number of hit sounds to extract : " + notes.getSize());
 			Iterator<Note> ite = notes.iterator();
 			while (ite.hasNext()) {
 				Note n = (Note) ite.next();
-				String folder = System.getProperty("user.dir") + "\\Grand Piano\\";
+				String folder = pianoFolder.getAbsolutePath() + "\\";
 				if (n.getName().contains("_s")){
 					folder = folder + "Short\\";
 				}
