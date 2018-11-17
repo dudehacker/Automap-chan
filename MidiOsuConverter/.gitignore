@@ -1,10 +1,4 @@
 bin/
 
-build/
-dist/
-Design.png
 config.properties
-build.xml
 .settings/
-test folder/
-*.mid
