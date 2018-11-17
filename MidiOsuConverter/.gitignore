@@ -1,5 +1,6 @@
 bin/
 
+build/
 dist/
 Design.png
 config.properties
