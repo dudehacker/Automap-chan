@@ -184,7 +184,7 @@ public class Utils {
 	 * @param bpm 
 	 * @return float mspb
 	 */
-	public static float bpmTomspb(int bpm){
+	public static float bpmTomspb(double bpm){
 		float mspb;
 		mspb = (float) (60000L*1.0/bpm);
 		return mspb;

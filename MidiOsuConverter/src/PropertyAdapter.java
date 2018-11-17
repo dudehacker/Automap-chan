@@ -4,6 +4,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -41,12 +44,17 @@ public final class PropertyAdapter {
 	private static final int DEFAULTS_MAX_CHORD = 5;
 	
 	public static String getCurrentWorkingPath() {
-		String path = null;
+		ClassLoader loader = ClassLoader.getSystemClassLoader();
+		File file = new File(loader.getResource("Main.class").getPath()).getParentFile().getParentFile();
+		String path = file.getPath();
+		path = path.replace("file:\\", "");
 		try {
-			path =  new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getCanonicalPath().replace("\\bin", "");
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e);
+			path = URLDecoder.decode(path, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
+		System.out.println(path);
+		
 		return path;
 	}
 	
@@ -71,13 +79,14 @@ public final class PropertyAdapter {
 		}
 	}
 	
-	public static String readFromProperty(String key) throws NullPointerException{
+	public static String readFromProperty(String key){
 		Properties prop = new Properties();
         InputStream input = null;
         try {
         	File f = new File(FULL_PATH);
         	if (!f.exists()){
         		f.createNewFile();
+        		return null;
         	}
             input = new FileInputStream(FULL_PATH);
             prop.load(input);
@@ -92,8 +101,7 @@ public final class PropertyAdapter {
         } catch (Exception e) {
         	JOptionPane.showMessageDialog(null,"PropertyAdapter got error reading from config file for key = " + key);
         }
-        JOptionPane.showMessageDialog(null,FULL_PATH);
-        throw new NullPointerException("");
+        return "";
         
 	}
 	

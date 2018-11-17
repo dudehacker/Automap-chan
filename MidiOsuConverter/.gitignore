@@ -1,4 +1,9 @@
-/bin/
+bin/
 
-/dist/
-/Design.png
+dist/
+Design.png
+config.properties
+build.xml
+.settings/
+test folder/
+*.mid

@@ -439,7 +439,7 @@ public class MidiUtils {
 		return tick;
 	}
 	
-	public static void setTempos(Sequencer sequencer, long[] timings, int[] bpms){
+	public static void setTempos(Sequencer sequencer, long[] timings, double[] bpms){
 		Sequencer seq = emptyTempos(sequencer);
 		Sequence sequence = seq.getSequence();
 		int res = sequence.getResolution();

@@ -124,7 +124,7 @@ public class MidiToOsuConverter implements Runnable {
 		try {
 			if (customTiming){
 				long[] timings = {0L};
-				int[] bpms = {125};
+				double[] bpms = {124.5};
 				String file = PropertyAdapter.PATH  + "\\customBPM.mid";
 				sequencer = MidiUtils.emptyTempos(sequencer);
 				MidiUtils.setTempos(sequencer, timings, bpms);
