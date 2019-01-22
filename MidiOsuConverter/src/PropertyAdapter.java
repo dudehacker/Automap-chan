@@ -105,10 +105,13 @@ public final class PropertyAdapter {
 	}
 	
 
+	private static boolean checkStringInput(String string) {
+		return (string != null && !string.isEmpty());
+	}
 	
 	public static int readIntegerFromProperty(String key) {
 		String value = readFromProperty(key);
-		if (value != null){
+		if (checkStringInput(value)){
 			return Integer.parseInt(value);
 		}
 		switch(key){
@@ -128,7 +131,7 @@ public final class PropertyAdapter {
 	  
 	  public static boolean readBooleanFromProperty(String key) {
 		  String value = readFromProperty(key);
-			if (value != null){
+			if (checkStringInput(value)){
 				return value.equalsIgnoreCase("true");
 			}
 		  switch(key){
