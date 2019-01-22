@@ -67,7 +67,7 @@ public class WindowOption extends javax.swing.JFrame {
 	 * @param midi
 	 */
 	public WindowOption(File midi) throws InvalidMidiDataException, IOException, MidiUnavailableException {
-		setTitle("Automap-chan v20180506");
+		setTitle("Automap-chan v20190121");
 		name = midi.getName();
 		readFromProperty();
 		Sequencer sequencer = MidiUtils.getSequencer(midi.toString());
