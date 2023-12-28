@@ -1,9 +1,11 @@
-/*
+package gui;/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+
+import util.MidiUtils;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -25,7 +27,7 @@ public class WindowVolume extends javax.swing.JFrame {
     private int trackID;
     
     /**
-     * Creates new form WindowVolume
+     * Creates new form gui.WindowVolume
      */
     public WindowVolume(Sequencer seq, int track) {
         sequencer = seq;

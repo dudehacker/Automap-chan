@@ -1,3 +1,4 @@
+package model;
 
 public class OsuBeatmap {
 
@@ -40,7 +41,7 @@ public class OsuBeatmap {
 	private double sliderTickRate = 1;
 	// Events
 	private String bgSamples = "";
-	// Timing Points
+	// model.Timing Points
 	private String timingPoints = "";
 	// Hit Objects
 	private String hitObjects="";

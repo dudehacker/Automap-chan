@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Comparator;
 
 public class Sample {
@@ -17,7 +19,7 @@ public class Sample {
 	
 	@Override
 	public String toString(){
-		return "Sample,"+startTime+",0,"+hitSound+","+volume;
+		return "model.Sample,"+startTime+",0,"+hitSound+","+volume;
 	}
 	
 	public boolean equals(Sample s){

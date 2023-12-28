@@ -1,3 +1,7 @@
+package util;
+
+import model.NoteArray;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,7 +21,7 @@ public class ChartingAlgorithm {
 	}
 
 	public void setColumns(ArrayList<NoteArray> chordList, int keyCount,
-			int maxChord, int Difficulty) {
+						   int maxChord, int Difficulty) {
 		long LastColumnTime[] = new long[keyCount];
 		//long tempLastColumnTime[] = new long[keyCount];
 		

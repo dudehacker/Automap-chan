@@ -1,3 +1,5 @@
+package util;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -112,12 +114,12 @@ public final class MidiToWavRenderer {
 	public void createWavFile(final Sequence sequence, int midiNote ,final File outputFile, double duration ) throws MidiUnavailableException,
 			InvalidMidiDataException, IOException {
 		/*
-		 * Open synthesizer in pull mode. Sample rate depends on pitch
+		 * Open synthesizer in pull mode. model.Sample rate depends on pitch
 		 * using Sinc interpolation for highest quality. With 1024 as max
 		 * polyphony.
 		 */
 		
-		// Hz Sample Rate(bit) strereo=2
+		// Hz model.Sample Rate(bit) strereo=2
 		final AudioFormat format = new AudioFormat(sampleRate, bitDepth, channel, true, false);
 		final Map<String, Object> map = new HashMap<String, Object>();
 		map.put("interpolation", "sinc");

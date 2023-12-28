@@ -1,3 +1,6 @@
+package util;
+
+import gui.WindowProgress;
 import it.sauronsoftware.jave.AudioAttributes;
 import it.sauronsoftware.jave.Encoder;
 import it.sauronsoftware.jave.EncoderException;
@@ -115,8 +118,6 @@ public class Utils {
 	 * 
 	 * @param timeline
 	 *            in ticks
-	 * @param bpms
-	 *            array of bpm
 	 * @param time
 	 *            in tick, current time
 	 * @return bpm of that section
@@ -305,7 +306,7 @@ public class Utils {
 	 * @param text
 	 *            data to write to file
 	 */
-	public static void writeToFile(WindowProgress window,String filePath, String text) {
+	public static void writeToFile(WindowProgress window, String filePath, String text) {
 		OutputStreamWriter writer = null;
 		try {
 			// create a temporary file

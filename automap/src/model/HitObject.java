@@ -1,3 +1,5 @@
+package model;
+
 public class HitObject {
 	// Instance Variables
 	private int type; // 1=circle 128=LN

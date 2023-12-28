@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,7 +18,7 @@ public class NoteArray {
 
 	public void add(Note n) {
 		if (n.getName() == null){
-			System.out.println("NoteArray.add(Note n) Exception: Name is null!");
+			System.out.println("model.NoteArray.add(model.Note n) Exception: Name is null!");
 			System.exit(-1);
 		}
 		notes.add(n.clone());
@@ -67,12 +69,12 @@ public class NoteArray {
 	}
 
 	/**
-	 * Search through this NoteArray object to find a Note object of same name
-	 * as Note n
+	 * Search through this model.NoteArray object to find a model.Note object of same name
+	 * as model.Note n
 	 * 
 	 * @param n
-	 *            Note object to search for
-	 * @return a Note object of same name as input if it exist, else throw
+	 *            model.Note object to search for
+	 * @return a model.Note object of same name as input if it exist, else throw
 	 *         exception
 	 */
 	public Note getNote(Note n) {
@@ -106,9 +108,9 @@ public class NoteArray {
 				return true;
 			}
 		}
-		System.out.println("Note being serached " + n.toString());
-		System.out.println("Note is not found");
-		System.out.println("Note array: \n" + toString());
+		System.out.println("model.Note being serached " + n.toString());
+		System.out.println("model.Note is not found");
+		System.out.println("model.Note array: \n" + toString());
 
 		//System.exit(-1);
 		return false;
@@ -193,11 +195,11 @@ public class NoteArray {
 	 * Sort the list of notes by its absolute start time and return an array
 	 * containing groups of notes that start at same time
 	 * 
-	 * @return ArrayList of NoteArray
+	 * @return ArrayList of model.NoteArray
 	 */
 	public ArrayList<NoteArray> sortNotesByTime() {
 		if (notes.size()==0){
-			throw new IllegalArgumentException("NoteArray is empty!");
+			throw new IllegalArgumentException("model.NoteArray is empty!");
 		}
 		// sort the whole array by its start time
 		Collections.sort(notes, Note.StartTimeComparator);

@@ -1,3 +1,5 @@
+package model;
+
 import java.text.DecimalFormat;
 import java.util.Comparator;
 
@@ -242,11 +244,11 @@ public class Note {
 		/*
 		if (LNduration < resolution * LN_Cutoff) {
 			// short note if duration is less than LN_Cutoff beat(s)
-			ho = new HitObject(column, abstime, volume, getHitSound());
+			ho = new model.HitObject(column, abstime, volume, getHitSound());
 		} else {
 			// LN
 			long end = abstime + (LNduration * 60000L) / (bpm * resolution);
-			ho = new HitObject(column, abstime, volume, end,
+			ho = new model.HitObject(column, abstime, volume, end,
 					getHitSound());
 		}
 		*/
