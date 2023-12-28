@@ -2,3 +2,4 @@
 *.properties
 /automap/src/META-INF/
 /out/
+/target/
