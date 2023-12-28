@@ -10,7 +10,6 @@ For more details go here: https://osu.ppy.sh/forum/t/382896
 When importing this project to Eclipse, please add the following as external libraies:
 1. Tarsos-latest.jar
 2. jave-1.0.2.jar
-3. commons-io-2.5.jar
 
 ## Helpers:
 
