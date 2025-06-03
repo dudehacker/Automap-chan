@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.sound.midi.InvalidMidiDataException;
@@ -24,8 +23,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
-import be.hogent.tarsos.midi.MidiCommon;
-import be.hogent.tarsos.midi.MidiUtils;
+
 
 import com.sun.media.sound.AudioSynthesizer;
 
@@ -58,7 +56,6 @@ public final class MidiToWavRenderer {
 	 */
 	private final transient AudioSynthesizer synth;
 
-	private double[] rebasedTuning;
 
 	/**
 	 * 
@@ -82,19 +79,6 @@ public final class MidiToWavRenderer {
 							+ "it should be de default synth. These are the currently installed synths: "
 							+ MidiSystem.getMidiDeviceInfo().toString(), e);
 		}
-	}
-
-	/**
-	 * Changes the tuning of the synth.
-	 * 
-	 * @param tuning
-	 * @throws InvalidMidiDataException
-	 * @throws IOException
-	 * @throws MidiUnavailableException
-	 */
-	public void setTuning(final double[] tuning) throws IOException,
-			InvalidMidiDataException, MidiUnavailableException {
-		rebasedTuning = MidiCommon.tuningFromPeaks(tuning);
 	}
 
 	public void saveSongWAV(final Sequence sequence, final String outputFile,double duration) throws MidiUnavailableException, IOException{
@@ -171,8 +155,6 @@ public final class MidiToWavRenderer {
 		final float divtype = seq.getDivisionType();
 		final Track[] tracks = seq.getTracks();
 
-		tune(recv);
-
 		final int[] trackspos = new int[tracks.length];
 		int mpq = 500000;
 		final int seqres = seq.getResolution();
@@ -219,18 +201,4 @@ public final class MidiToWavRenderer {
 		return curtime / 1000000.0;
 	}
 
-	private void tune(final Receiver recv) {
-		try {
-			if (rebasedTuning != null) {
-				for (int i = 0; i < 16; i++) {
-					MidiUtils.sendTunings(recv, i, 0, "african", rebasedTuning);
-					MidiUtils.sendTuningChange(recv, i, 0);
-				}
-			}
-		} catch (final IOException e) {
-			LOG.log(Level.SEVERE, e.getMessage(), e);
-		} catch (final InvalidMidiDataException e) {
-			LOG.log(Level.SEVERE, e.getMessage(), e);
-		}
-	}
 }
